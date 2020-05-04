@@ -12,6 +12,7 @@ const db = firebase
 
 export default new Vuex.Store({
   state: {
+    user: [],
     products: [],
     categories: [
       'Alcoholic drinks',
