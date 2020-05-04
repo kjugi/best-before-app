@@ -11,12 +11,12 @@
 - Notify with success/error message
 - Add categories of products
 - Checkbox with disabling expire date field from required field to optional
-
-## When reach this point we have ready app for presentation. What's TODO later:
-- Add compact view and full view on homepage
-- Firebase connection and auth
 - Firebase fetching data
 - Firebase sending data
+
+## When reach this point we have ready app for presentation. What's TODO later:
+- Firebase connection and auth
+- Add compact view and full view on homepage
 - Firebase sending images
 - Error handling
 - Sending notifications about product close to expire, expired products and today expire products
