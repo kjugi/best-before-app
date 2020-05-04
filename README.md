@@ -16,6 +16,7 @@
 
 ## When reach this point we have ready app for presentation. What's TODO later:
 - Firebase connection and auth
+- Firebase hosting or simillar to go live
 - Add compact view and full view on homepage
 - Firebase sending images
 - Error handling
