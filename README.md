@@ -13,9 +13,11 @@
 - Checkbox with disabling expire date field from required field to optional
 - Firebase fetching data
 - Firebase sending data
+- Firebase connection and auth
 
 ## When reach this point we have ready app for presentation. What's TODO later:
-- Firebase connection and auth
+- Fix router
+- Adjust login and register views
 - Firebase hosting or simillar to go live
 - Add compact view and full view on homepage
 - Firebase sending images
