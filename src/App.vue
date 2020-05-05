@@ -21,17 +21,61 @@
           to="/add-product"
         >
           Add product
-        </router-link>
+        </router-link> |
+
+        <template v-if="!isLogged">
+          <router-link
+            class="nav__link"
+            to="/login"
+          >
+            Login
+          </router-link> |
+
+          <router-link
+            class="nav__link"
+            to="/register"
+          >
+            Register
+          </router-link> |
+        </template>
+
+        <button
+          v-else
+          @click="logout"
+        >
+          Logout
+        </button>
       </div>
     </div>
 
     <div class="app__container">
-      <router-view/>
+      <router-view />
     </div>
 
     <portal-target name="notify-portal" />
   </div>
 </template>
+
+<script>
+import { computed } from '@vue/composition-api'
+import firebase from 'firebase'
+import 'firebase/auth'
+
+export default {
+  setup (props, context) {
+    const isLogged = computed(() => !!context.root.$store.state.user)
+
+    function logout() {
+      firebase.auth().signOut()
+    }
+
+    return {
+      isLogged,
+      logout
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 body {
