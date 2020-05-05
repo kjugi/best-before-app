@@ -1,18 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { vuexfireMutations, firebaseAction } from 'vuexfire'
-import firebase from 'firebase/app'
-import 'firebase/database'
+import { db, currentTime } from '../logic/Db.js'
 
 Vue.use(Vuex)
 
-const db = firebase
-  .initializeApp({ databaseURL: 'https://best-before-app-afb09.firebaseio.com/' })
-  .database()
-
 export default new Vuex.Store({
   state: {
-    user: [],
+    user: null,
     products: [],
     categories: [
       'Alcoholic drinks',
@@ -43,31 +38,35 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    ...vuexfireMutations
+    ...vuexfireMutations,
+    setUser (state, value) {
+      state.user = value
+    }
   },
   actions: {
     bindProducts: firebaseAction(context => {
+      const userId = context.state.user.uid
       return context.bindFirebaseRef(
         'products',
-        db.ref('products').orderByChild('createdAt')
+        db.ref(`${userId}/products`).orderByChild('createdAt')
       )
     }),
     unbindProducts: firebaseAction(context => {
-      return context.unbindFirebaseRef('products')
+      const userId = context.state.user.uid
+      return context.unbindFirebaseRef(`${userId}/products`)
     }),
     addProduct: firebaseAction((context, data) => {
-      // return the promise so we can await the write
-      return db.ref('products').push({
+      const userId = context.state.user.uid
+      return db.ref(`${userId}/products`).push({
         name: data.name,
         expireDate: data.expireDate,
         category: data.category,
-        createdAt: firebase.database.ServerValue.TIMESTAMP
+        createdAt: currentTime
       })
     }),
     deleteProduct: firebaseAction((context, productId) => {
-      db.ref('products/' + productId).remove()
+      const userId = context.state.user.uid
+      db.ref(`${userId}/products/${productId}`).remove()
     })
-  },
-  getters: {
   }
 })
