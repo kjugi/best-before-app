@@ -9,15 +9,39 @@
 
       <input type="password" v-model="password" />
 
-      <button>
+      <button @click="registerUser">
         Register
       </button>
+
+      {{ errorMessage }}
     </form>
   </div>
 </template>
 
 <script>
-export default {
+import { ref } from '@vue/composition-api'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
+export default {
+  setup () {
+    const login = ref('')
+    const password = ref('')
+    let errorMessage = ref('')
+
+    function registerUser() {
+      firebase.auth().createUserWithEmailAndPassword(login.value, password.value)
+        .catch(error => {
+          errorMessage = error.message
+        })
+    }
+
+    return {
+      login,
+      password,
+      errorMessage,
+      registerUser
+    }
+  }
 }
 </script>
