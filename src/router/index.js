@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { auth } from '../logic/Db.js'
 import store from '../store'
 
 import Home from '../views/Home.vue'
@@ -44,21 +43,23 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  auth.onAuthStateChanged(user => {
-    store.commit('setUser', user)
+  let name = false
 
-    if (user && (to.name === 'Login' || to.name === 'Register')) {
-      next({ name: 'Home' })
-    } else if (!user && to.name !== 'Login') {
-      next({ name: 'Login' })
+  if (store.getters.isUserLogged) {
+    if (to.name === 'Login' || to.name === 'Register') {
+      name = 'Home'
     } else {
-      next()
+      name = false
     }
+  } else {
+    if (to.name === 'Login' || to.name === 'Register') {
+      name = false
+    } else {
+      name = 'Login'
+    }
+  }
 
-    // else if (!user && to.name !== 'Register') {
-    //   next({ name: 'Register' })
-    // }
-  })
+  name ? next({ name }) : next()
 })
 
 export default router

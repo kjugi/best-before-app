@@ -58,12 +58,19 @@
 
 <script>
 import { computed } from '@vue/composition-api'
-import firebase from 'firebase'
-import 'firebase/auth'
+import { auth } from './logic/Db.js'
 
 export default {
   setup (props, context) {
-    const isLogged = computed(() => !!context.root.$store.state.user)
+    auth.onAuthStateChanged(user => {
+      context.root.$store.commit('setUser', user)
+
+      if (user) {
+        context.root.$router.push({ name: 'Home' })
+      }
+    })
+
+    const isLogged = computed(() => !!context.root.$store.getters.isUserLogged)
 
     function logout() {
       firebase.auth().signOut()

@@ -68,5 +68,10 @@ export default new Vuex.Store({
       const userId = context.state.user.uid
       db.ref(`${userId}/products/${productId}`).remove()
     })
+  },
+  getters: {
+    isUserLogged (state) {
+      return !!state.user
+    }
   }
 })
