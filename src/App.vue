@@ -73,7 +73,14 @@ export default {
     const isLogged = computed(() => !!context.root.$store.getters.isUserLogged)
 
     function logout() {
-      firebase.auth().signOut()
+      try {
+        auth.signOut()
+        context.root.$store.commit('setUser', null)
+        context.root.$router.push({ name: 'Login' })
+      } catch {
+        // TODO: Error handling
+        console.log('problem')
+      }
     }
 
     return {
