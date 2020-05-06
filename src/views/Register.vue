@@ -32,6 +32,7 @@ export default {
     function registerUser() {
       firebase.auth().createUserWithEmailAndPassword(login.value, password.value)
         .catch(error => {
+          // TODO: Error handling
           errorMessage = error.message
         })
     }

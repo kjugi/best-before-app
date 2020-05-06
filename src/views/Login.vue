@@ -36,6 +36,7 @@ export default {
     function loginUser() {
       firebase.auth().signInWithEmailAndPassword(login.value, password.value)
         .catch(error => {
+          // TODO: Error handling
           errorMessage = error.message
         })
     }
