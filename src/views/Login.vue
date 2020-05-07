@@ -48,11 +48,10 @@
 import { ref } from '@vue/composition-api'
 import { required, email } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
-import firebase from 'firebase/app'
-import 'firebase/auth'
 
 import InputField from '@/components/InputField.vue'
 import Notify from '@/components/Notify.vue'
+import { auth } from '@/logic/Db.js'
 import { initFunction } from '@/logic/Notify.js'
 
 export default {
@@ -78,7 +77,7 @@ export default {
     )
 
     function triggerLogin() {
-      firebase.auth().signInWithEmailAndPassword(login.value, password.value)
+      auth.signInWithEmailAndPassword(login.value, password.value)
         .then(() => {
           showMessage({
             status: true,
