@@ -15,9 +15,9 @@
 - Firebase sending data
 - Firebase connection and auth
 - Fix router
+- Adjust login and register views
 
 ## When reach this point we have ready app for presentation. What's TODO later:
-- Adjust login and register views
 - Firebase hosting or simillar to go live
 - Add compact view and full view on homepage
 - Firebase sending images
