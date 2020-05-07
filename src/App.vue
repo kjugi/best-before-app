@@ -58,7 +58,7 @@
 
 <script>
 import { computed } from '@vue/composition-api'
-import { auth } from './logic/Db.js'
+import { auth } from '@/logic/Db.js'
 
 export default {
   setup (props, context) {
