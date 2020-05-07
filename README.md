@@ -22,6 +22,8 @@ https://best-before-app-afb09.firebaseapp.com/
 - Firebase hosting or simillar to go live
 
 ## When reach this point we have ready app for presentation. What's TODO later:
+- Update favicon and site title tag
+- Fix firebase routing
 - Add compact view and full view on homepage
 - Firebase sending images
 - Error handling
