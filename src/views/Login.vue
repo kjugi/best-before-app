@@ -82,7 +82,7 @@ export default {
           showMessage({
             status: true,
             messageClass: 'notify--success',
-            message: 'Welcome ' + login.value
+            message: `Welcome ${login.value}`
           })
         })
         .catch(error => {
