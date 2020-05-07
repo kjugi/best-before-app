@@ -1,5 +1,7 @@
 .DS_Store
 .firebaserc
+firebase-debug.log
+.firebase
 node_modules
 /dist
 
