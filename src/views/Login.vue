@@ -23,10 +23,7 @@
         :error-message="validation.password.$errors[0] ? validation.password.$errors[0].$message : ''"
       />
 
-      <button
-        :disabled="validation.$invalid"
-        @click="triggerLogin"
-      >
+      <button :disabled="validation.$invalid">
         Login
       </button>
     </form>
