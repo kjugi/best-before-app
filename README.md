@@ -27,7 +27,7 @@ https://best-before-app-afb09.firebaseapp.com/
 - Add compact view and full view on homepage
 - Firebase sending images
 - Error handling
-- Sending notifications about product close to expire, expired products and today expire products
+- Sending notifications about product close to expire, expired products and today expire products - use https://github.com/firebase/functions-samples/tree/master/fcm-notifications
 - Edit mode for product list from homepage
 - User preferences/settings
 - Performance comparsion vol.2.
