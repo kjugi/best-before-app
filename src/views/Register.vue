@@ -52,6 +52,7 @@ import { initFunction } from '@/logic/Notify.js'
 import { auth } from '@/logic/Db.js'
 
 export default {
+  name: 'RegisterPage',
   components: {
     InputField,
     Notify

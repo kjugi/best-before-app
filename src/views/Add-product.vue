@@ -89,6 +89,7 @@ import Notify from '@/components/Notify.vue'
 import { initFunction } from '@/logic/Notify.js'
 
 export default {
+  name: 'AddProductPage',
   components: {
     InputField,
     Notify
