@@ -13,22 +13,37 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: 'Homepage'
+    }
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {
+      title: 'Login page'
+    }
   },
   {
     path: '/register',
     name: 'Register',
     component: Register
+    meta: {
+      title: 'Register page'
+    }
   },
   {
     path: '/add-product',
     name: 'Add product',
-    component: () => import(/* webpackChunkName: "add-product" */ '../views/Add-product.vue')
+    component: () => import(
+      /* webpackChunkName: "add-product" */
+      '../views/Add-product.vue'
+    ),
+    meta: {
+      title: 'Add product page'
+    }
   },
   {
     path: '*',
@@ -41,6 +56,12 @@ const router = new VueRouter({
   mode: 'history',
   routes
 })
+
+router.afterEach((to) => {
+  if (to.meta && to.meta.title) {
+    document.title = to.meta.title + ' | Best Before app';
+  }
+});
 
 router.beforeEach((to, from, next) => {
   let name = false
