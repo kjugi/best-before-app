@@ -20,9 +20,9 @@ https://best-before-app-afb09.firebaseapp.com/
 - Fix router
 - Adjust login and register views
 - Firebase hosting or simillar to go live
+- Update favicon and site title tag
 
 ## When reach this point we have ready app for presentation. What's TODO later:
-- Update favicon and site title tag
 - Fix firebase routing
 - Add compact view and full view on homepage
 - Firebase sending images
