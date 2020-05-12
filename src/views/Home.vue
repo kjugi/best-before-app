@@ -8,7 +8,10 @@
 
     <ul
       v-if="products.length > 0"
-      class="home__list"
+      :class="[
+        'home__list',
+        { 'home__list--compact': !isStandardViewActive }
+      ]"
     >
       <li
         v-for="(item, index) in products"
@@ -22,22 +25,30 @@
         <div class="home__item-content">
           <p class="home__item-details">
             <span class="home__item-line">
-              No. {{ index }}.
+              <span class="home__item-label">
+                No. {{ index }}.
 
-              Product name:
+                Product name:
+              </span>
+
               <span class="home__item-detail">
                 {{ item.name }}
               </span>
             </span>
             <span class="home__item-line">
-              Category:
+              <span class="home__item-label">
+                Category:
+              </span>
+
               <span class="home__item-detail">
                 {{ item.category }}
               </span>
             </span>
 
             <span class="home__item-line">
-              Expire date:
+              <span class="home__item-label">
+                Expire date:
+              </span>
 
               <span class="home__item-detail">
                 {{ item.expireDate }}
@@ -157,6 +168,11 @@ export default {
       showMessage
     } = initFunction()
 
+    // Items view type
+    const isStandardViewActive = computed(() =>
+      context.root.$store.state.isStandardViewActive
+    )
+
     return {
       products: computed(() => context.root.$store.state.products),
       idToDelete,
@@ -167,7 +183,9 @@ export default {
       isMessageShowed,
       message,
       messageClasses,
-      toggleMessage
+      toggleMessage,
+      // Items view type
+      isStandardViewActive
     }
   }
 }
@@ -179,6 +197,32 @@ export default {
     padding: 0;
     margin: 0;
     list-style: none;
+
+    &--compact {
+      .home__item {
+        justify-content: center;
+      }
+
+      .home__item-content {
+        width: auto;
+      }
+
+      .home__item-details {
+        margin: 0;
+      }
+
+      .home__item-line {
+        display: initial;
+      }
+
+      .home__item-label {
+        display: none;
+      }
+
+      .home__item-detail:after {
+        content: '-';
+      }
+    }
   }
 
   &__item {
