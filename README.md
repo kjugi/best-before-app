@@ -26,14 +26,16 @@ https://best-before-app-afb09.firebaseapp.com/
 - Fix firebase routing
 - Add compact view and full view on homepage
 
-## When reach this point we have ready app for presentation. What's TODO later:
+## TODO:
 - Error handling
 - Deploy firebase app with command `firebase deploy` in CI on master barnch
 - Sending notifications about product close to expire, expired products and today expire products - use https://github.com/firebase/functions-samples/tree/master/fcm-notifications
+- Release and public (use .env, disable registration)
 - Edit mode for product list from homepage
 - User preferences/settings page like user dashboard after login + saving compact/standard view of items
 - Add search option
 - Add sorting options
+- Code review for whole codebase (rewrite styles to reusable, splitting logic and components to separate files and reusing them)
 - Add QTY in main form
 - Add QTY in edit mode for single product from homepage
 - Add option with auto categories selecting for products (translating provided name of product and compare to list)
