@@ -28,12 +28,15 @@ https://best-before-app-afb09.firebaseapp.com/
 
 ## When reach this point we have ready app for presentation. What's TODO later:
 - Error handling
+- Deploy firebase app with command `firebase deploy` in CI on master barnch
 - Sending notifications about product close to expire, expired products and today expire products - use https://github.com/firebase/functions-samples/tree/master/fcm-notifications
 - Edit mode for product list from homepage
-- User preferences/settings + saving compact/standard view of items
-- Add option with auto categories selecting for products (translating provided name of product and compare to list)
-- Add sorting options
+- User preferences/settings page like user dashboard after login + saving compact/standard view of items
 - Add search option
+- Add sorting options
+- Add QTY in main form
+- Add QTY in edit mode for single product from homepage
+- Add option with auto categories selecting for products (translating provided name of product and compare to list)
 - Firebase sending images
 - Exporting item to other shop/todo app
 - NEW page for toiler paper status
