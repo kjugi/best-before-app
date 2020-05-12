@@ -103,7 +103,13 @@
       v-else
       class="home__no-results"
     >
-      No products in store
+      <strong class="home__no-results-title">
+        You don't have any products.
+      </strong>
+
+      <span>
+        Add one in <a href="/add-product">add product page</a>
+      </span>
     </p>
 
     <portal to="notify-portal">
@@ -261,6 +267,11 @@ export default {
 
   &__no-results {
     text-align: center;
+  }
+
+  &__no-results-title {
+    display: block;
+    font-size: 18px;
   }
 }
 </style>
