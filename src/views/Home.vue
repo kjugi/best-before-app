@@ -4,6 +4,8 @@
       List of products
     </h2>
 
+    <top-bar v-if="products.length > 0" />
+
     <ul
       v-if="products.length > 0"
       class="home__list"
@@ -110,12 +112,14 @@
 import { ref, computed } from '@vue/composition-api'
 
 import Notify from '@/components/Notify.vue'
+import TopBar from '@/components/TopBar.vue'
 import { initFunction } from '@/logic/Notify.js'
 
 export default {
   name: 'Home',
   components: {
-    Notify
+    Notify,
+    TopBar
   },
   setup (props, context) {
     // Run fetching products from firebase

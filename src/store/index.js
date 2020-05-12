@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
+    isStandardViewActive: true,
     products: [],
     categories: [
       'Alcoholic drinks',
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     ...vuexfireMutations,
     setUser (state, value) {
       state.user = value
+    },
+    changeView (state) {
+      state.isStandardViewActive = !state.isStandardViewActive
     }
   },
   actions: {
