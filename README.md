@@ -5,25 +5,27 @@ https://best-before-app-afb09.firebaseapp.com/
 
 ## What's in this app
 - List of products on homepage
-- Adding new items to store
-- Deleting items from store
+- Adding new items
+- Deleting items
 - Vuex store to keep items
-- Clearing inputs after adding item
-- Confirm on delete items
-- Add validation on inputs
+- Validation on inputs
 - Notify with success/error message
 - Add categories of products
+- Firebase integration with hosting
+- Login and register views
+
+## Tasks finished:
+- Confirm on delete items
+- Clearing inputs after adding item
 - Checkbox with disabling expire date field from required field to optional
 - Firebase fetching data
 - Firebase sending data
 - Firebase connection and auth
 - Fix router
-- Adjust login and register views
-- Firebase hosting or simillar to go live
 - Update favicon and site title tag
+- Fix firebase routing
 
 ## When reach this point we have ready app for presentation. What's TODO later:
-- Fix firebase routing
 - Add compact view and full view on homepage
 - Firebase sending images
 - Error handling
