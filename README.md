@@ -24,18 +24,17 @@ https://best-before-app-afb09.firebaseapp.com/
 - Fix router
 - Update favicon and site title tag
 - Fix firebase routing
+- Add compact view and full view on homepage
 
 ## When reach this point we have ready app for presentation. What's TODO later:
-- Add compact view and full view on homepage
-- Firebase sending images
 - Error handling
 - Sending notifications about product close to expire, expired products and today expire products - use https://github.com/firebase/functions-samples/tree/master/fcm-notifications
 - Edit mode for product list from homepage
-- User preferences/settings
-- Performance comparsion vol.2.
+- User preferences/settings + saving compact/standard view of items
 - Add option with auto categories selecting for products (translating provided name of product and compare to list)
 - Add sorting options
 - Add search option
+- Firebase sending images
 - Exporting item to other shop/todo app
 - NEW page for toiler paper status
 - Predefined expiry data for some items i.e. frozen category
