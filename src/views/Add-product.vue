@@ -84,9 +84,9 @@ import { ref, computed } from '@vue/composition-api'
 import { required } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 
-import InputField from '@/components/InputField.vue'
-import Notify from '@/components/Notify.vue'
-import { initFunction } from '@/logic/Notify.js'
+import InputField from '../components/InputField.vue'
+import Notify from '../components/Notify.vue'
+import { initFunction } from '../logic/Notify.js'
 
 export default {
   name: 'AddProductPage',

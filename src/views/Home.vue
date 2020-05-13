@@ -109,8 +109,8 @@
 <script>
 import { ref, computed } from '@vue/composition-api'
 
-import Notify from '@/components/Notify.vue'
-import { initFunction } from '@/logic/Notify.js'
+import Notify from '../components/Notify.vue'
+import { initFunction } from '../logic/Notify.js'
 
 export default {
   name: 'Home',

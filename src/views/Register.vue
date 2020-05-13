@@ -46,10 +46,10 @@ import { ref } from '@vue/composition-api'
 import { required, email } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 
-import InputField from '@/components/InputField.vue'
-import Notify from '@/components/Notify.vue'
-import { initFunction } from '@/logic/Notify.js'
-import { auth } from '@/logic/Db.js'
+import InputField from '../components/InputField.vue'
+import Notify from '../components/Notify.vue'
+import { initFunction } from '../logic/Notify.js'
+import { auth } from '../logic/Db.js'
 
 export default {
   name: 'RegisterPage',
