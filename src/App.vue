@@ -52,6 +52,14 @@
       <router-view />
     </div>
 
+    <transition name="fade">
+      <notify
+        v-show="isMessageShowed"
+        :message="message"
+        @click.native="toggleMessage(10)"
+      />
+    </transition>
+
     <portal-target name="notify-portal" />
   </div>
 </template>
@@ -60,7 +68,13 @@
 import { computed } from '@vue/composition-api'
 import { auth } from '@/logic/Db.js'
 
+import Notify from '@/components/Notify.vue'
+import { initFunction } from '@/logic/Notify.js'
+
 export default {
+  components: {
+    Notify
+  },
   setup (props, context) {
     auth.onAuthStateChanged(user => {
       context.root.$store.commit('setUser', user)
@@ -77,15 +91,30 @@ export default {
         auth.signOut()
         context.root.$store.commit('setUser', null)
         context.root.$router.push({ name: 'Login' })
-      } catch {
-        // TODO: Error handling
-        console.log('problem')
+      } catch (error) {
+        showMessage({
+          status: true,
+          messageClass: 'notify--error',
+          message: `Problem with logout. ${error.message}`
+        })
       }
     }
 
+    // Notify init
+    const {
+      isMessageShowed,
+      message,
+      toggleMessage,
+      showMessage
+    } = initFunction()
+
     return {
       isLogged,
-      logout
+      logout,
+      // Notify
+      isMessageShowed,
+      message,
+      toggleMessage
     }
   }
 }
