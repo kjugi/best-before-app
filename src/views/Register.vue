@@ -23,7 +23,10 @@
         :error-message="validation.password.$errors[0] ? validation.password.$errors[0].$message : ''"
       />
 
-      <button :disabled="validation.$invalid">
+      <button
+        class="register__button"
+        :disabled="validation.$invalid"
+      >
         Register
       </button>
     </form>
@@ -125,3 +128,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.register {
+  &__button {
+    padding: 8px 24px;
+  }
+}
+</style>
