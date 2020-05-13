@@ -11,8 +11,6 @@
           label="Product name"
           v-model="name"
           type="text"
-          :is-error="validation.name.$invalid"
-          :error-message="validation.name.$errors[0] ? validation.name.$errors[0].$message : ''"
         />
 
         <input-field
@@ -21,8 +19,6 @@
           v-model="expireDate"
           type="date"
           :min="today"
-          :is-error="validation.expireDate.$invalid"
-          :error-message="validation.expireDate.$invalid ? 'Value is required' : ''"
         />
 
         <input-field
@@ -59,7 +55,6 @@
       <button
         type="submit"
         class="product__button"
-        :disabled="validation.$invalid"
         @click="addProductTrigger"
       >
         Add product to database
@@ -81,8 +76,6 @@
 
 <script>
 import { ref, computed } from '@vue/composition-api'
-import { required } from '@vuelidate/validators'
-import useVuelidate from '@vuelidate/core'
 
 import InputField from '../components/InputField.vue'
 import Notify from '../components/Notify.vue'
@@ -109,17 +102,6 @@ export default {
     // Validation logic
     const name = ref('')
     const expireDate = ref('')
-    const validation = useVuelidate(
-      {
-        name: {
-          required
-        },
-        expireDate: {
-          mustBeCool
-        }
-      },
-      { name, expireDate }
-    )
 
     // Adding product logic
     function addProductTrigger () {
@@ -162,7 +144,6 @@ export default {
       name,
       expireDate,
       today,
-      validation,
       addProductTrigger,
       // Notify logic
       isMessageShowed,
@@ -178,26 +159,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.product {
-  &__form {
-    margin-bottom: 12px;
-  }
-
-  &__field {
-    padding: 12px;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #2c3e50;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  &__button {
-    display: block;
-    margin: 0 0 0 auto;
-  }
-}
-</style>

@@ -10,8 +10,6 @@
         label="Login"
         v-model="login"
         type="email"
-        :is-error="validation.login.$invalid"
-        :error-message="validation.login.$errors[0] ? validation.login.$errors[0].$message : ''"
       />
 
       <input-field
@@ -19,11 +17,9 @@
         label="Password"
         v-model="password"
         type="password"
-        :is-error="validation.password.$invalid"
-        :error-message="validation.password.$errors[0] ? validation.password.$errors[0].$message : ''"
       />
 
-      <button :disabled="validation.$invalid">
+      <button>
         Register
       </button>
     </form>
@@ -43,8 +39,6 @@
 
 <script>
 import { ref } from '@vue/composition-api'
-import { required, email } from '@vuelidate/validators'
-import useVuelidate from '@vuelidate/core'
 
 import InputField from '../components/InputField.vue'
 import Notify from '../components/Notify.vue'
@@ -60,19 +54,6 @@ export default {
   setup () {
     const login = ref('')
     const password = ref('')
-
-    const validation = useVuelidate(
-      {
-        login: {
-          required,
-          email
-        },
-        password: {
-          required
-        }
-      },
-      { login, password }
-    )
 
     function triggerRegister() {
       auth.createUserWithEmailAndPassword(login.value, password.value)
@@ -114,8 +95,6 @@ export default {
       password,
       // Trigger
       triggerRegister,
-      // Validation
-      validation,
       // Notify message
       isMessageShowed,
       toggleMessage,

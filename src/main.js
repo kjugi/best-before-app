@@ -3,8 +3,8 @@ import { rtdbPlugin } from 'vuefire'
 import App from './App.vue'
 import VueCompositionApi from '@vue/composition-api'
 import PortalVue from 'portal-vue'
-import router from './router'
-import store from './store'
+import router from './router/index.js'
+import store from './store/index.js'
 
 Vue.config.productionTip = false
 Vue.use(VueCompositionApi)
