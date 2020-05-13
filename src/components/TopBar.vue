@@ -49,6 +49,7 @@ export default {
 .top-bar {
   display: flex;
   padding: 12px;
+  margin-bottom: 24px;
   background-color: #2c3e50;
 
   &__button {

@@ -214,7 +214,12 @@ export default {
       }
 
       .home__item-details {
+        display: inline-block;
         margin: 0;
+      }
+
+      .home__item-info {
+        display: inline-block;
       }
 
       .home__item-line {
