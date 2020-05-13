@@ -26,9 +26,10 @@ https://best-before-app-afb09.firebaseapp.com/
 - Fix firebase routing
 - Add compact view and full view on homepage
 - Error handling
+- Fix mobile styles
 
 ## TODO:
-- Fix mobile styles
+- Showing loader and blocking forms when doing action
 - Deploy firebase app with command `firebase deploy` in CI on master barnch
 - Sending notifications about product close to expire, expired products and today expire products - use https://github.com/firebase/functions-samples/tree/master/fcm-notifications
 - Release and public (use .env, disable registration)
