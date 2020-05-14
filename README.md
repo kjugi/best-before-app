@@ -32,7 +32,7 @@ https://best-before-app-afb09.firebaseapp.com/
 - Showing loader and blocking forms when doing action
 - Deploy firebase app with command `firebase deploy` in CI on master barnch
 - Sending notifications about product close to expire, expired products and today expire products - use https://github.com/firebase/functions-samples/tree/master/fcm-notifications
-- Release and public (use .env, disable registration)
+- Release and public (use .env, disable registration, add .indexOn and .validate on firebase console - ref https://firebase.google.com/docs/database/security)
 - Edit mode for product list from homepage
 - User preferences/settings page like user dashboard after login + saving compact/standard view of items
 - Add search option
