@@ -1,0 +1,23 @@
+version: 2.1
+jobs:
+  build:
+    branches:
+      only: master
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies with yarn
+          command: yarn
+      - run:
+          name: Run build
+          command: yarn build
+      - run: 
+          name: Deploy app
+          command: firebase deploy --only hosting --token $FIREBASE_TOKEN
+
+workflows:
+  firebase-app:
+    jobs:
+      - build
