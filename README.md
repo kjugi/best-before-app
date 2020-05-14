@@ -10,9 +10,10 @@ https://best-before-app-afb09.firebaseapp.com/
 - Vuex store to keep items
 - Validation on inputs
 - Notify with success/error message
-- Add categories of products
+- Categories of products
 - Firebase integration with hosting
 - Login and register views
+- Compact view and full view on homepage
 
 ## Tasks finished:
 - Confirm on delete items
@@ -24,13 +25,12 @@ https://best-before-app-afb09.firebaseapp.com/
 - Fix router
 - Update favicon and site title tag
 - Fix firebase routing
-- Add compact view and full view on homepage
 - Error handling
 - Fix mobile styles
+- Deploy firebase app with command `firebase deploy` in CI on master branch
 
 ## TODO:
 - Showing loader and blocking forms when doing action
-- Deploy firebase app with command `firebase deploy` in CI on master barnch
 - Sending notifications about product close to expire, expired products and today expire products - use https://github.com/firebase/functions-samples/tree/master/fcm-notifications
 - Release and public (use .env, disable registration, add .indexOn and .validate on firebase console - ref https://firebase.google.com/docs/database/security)
 - Edit mode for product list from homepage
