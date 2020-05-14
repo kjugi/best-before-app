@@ -16,7 +16,7 @@ jobs:
           command: yarn add firebase-tools
       - run:
           name: Deploy app
-          command: yarn firebase deploy --only hosting --token $FIREBASE_TOKEN
+          command: yarn firebase deploy --only hosting --token $FIREBASE_TOKEN --project best-before-app-afb09
 
 workflows:
   firebase-app:
