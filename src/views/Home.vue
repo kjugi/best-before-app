@@ -168,3 +168,51 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.home {
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: baseline;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #2c3e50;
+
+    &--warning-date {
+      background-color: #ECA72C;
+    }
+
+    &--expire-date {
+      background-color: #EE5622;
+      color: #fff;
+    }
+  }
+
+  &__item-content {
+    width: calc(100% - 132px);
+    margin-right: 12px;
+  }
+
+  &__item-detail {
+    font-weight: 700;
+  }
+
+  &__item-line {
+    display: block;
+  }
+
+  &__item-delete {
+    width: 120px;
+  }
+
+  &__no-results {
+    text-align: center;
+  }
+}
+</style>

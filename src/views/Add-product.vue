@@ -159,3 +159,26 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.product {
+  &__form {
+    margin-bottom: 12px;
+  }
+
+  &__field {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #2c3e50;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__button {
+    display: block;
+    margin: 0 0 0 auto;
+  }
+}
+</style>
