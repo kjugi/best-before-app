@@ -13,6 +13,8 @@
 
     <div class="app__container">
       <router-view />
+
+      <loader v-if="isRequest" />
     </div>
 
     <portal-target name="notify-portal" />
@@ -20,15 +22,20 @@
 </template>
 
 <script>
+import { computed } from '@vue/composition-api'
 import { auth } from '@/logic/Db.js'
 
 import MainMenu from '@/components/Menu.vue'
+import Loader from '@/components/Loader.vue'
 
 export default {
   components: {
-    MainMenu
+    MainMenu,
+    Loader
   },
   setup (props, context) {
+    const isRequest = computed(() => context.root.$store.state.isRequestProcessed)
+
     auth.onAuthStateChanged(user => {
       context.root.$store.commit('setUser', user)
 
@@ -36,6 +43,10 @@ export default {
         context.root.$router.push({ name: 'Home' })
       }
     })
+
+    return {
+      isRequest
+    }
   }
 }
 </script>

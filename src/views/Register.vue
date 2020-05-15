@@ -60,7 +60,7 @@ export default {
     InputField,
     Notify
   },
-  setup () {
+  setup (props, context) {
     const login = ref('')
     const password = ref('')
 
@@ -77,7 +77,9 @@ export default {
       { login, password }
     )
 
-    function triggerRegister() {
+    async function triggerRegister() {
+      context.root.$store.commit('changeRequestProcess', true)
+
       auth.createUserWithEmailAndPassword(login.value, password.value)
         .then(() => {
           showMessage({
@@ -95,6 +97,7 @@ export default {
         })
 
       clearFields()
+      context.root.$store.commit('changeRequestProcess', false)
     }
 
     function clearFields () {

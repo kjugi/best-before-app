@@ -36,7 +36,8 @@ export default new Vuex.Store({
       'Snacks',
       'Spieces, sauces & condiments',
       'Frozen'
-    ]
+    ],
+    isRequestProcessed: false
   },
   mutations: {
     ...vuexfireMutations,
@@ -45,6 +46,9 @@ export default new Vuex.Store({
     },
     changeView (state) {
       state.isStandardViewActive = !state.isStandardViewActive
+    },
+    changeRequestProcess (state, value) {
+      state.isRequestProcessed = value
     }
   },
   actions: {

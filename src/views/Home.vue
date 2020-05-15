@@ -154,15 +154,18 @@ export default {
       return Math.ceil((new Date(dateToCompare) - new Date()) / (1000 * 60 * 60 * 24)) < 0 || false
     }
 
-    function deleteProduct (id) {
+    async function deleteProduct (id) {
+      context.root.$store.commit('changeRequestProcess', true)
       idToDelete.value = null
-      context.root.$store.dispatch('deleteProduct', id)
+
+      await context.root.$store.dispatch('deleteProduct', id)
 
       showMessage({
         status: true,
         messageClass: 'notify--success',
         message: 'Successfully deleted'
       })
+      context.root.$store.commit('changeRequestProcess', false)
     }
 
     // Notify init
