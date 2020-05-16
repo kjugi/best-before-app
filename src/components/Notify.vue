@@ -28,7 +28,7 @@ export default {
   text-align: right;
   background-color: #fff;
   border: 1px solid #2c3e50;
-  z-index: 10;
+  z-index: 100;
 
   &--error {
     background-color: #EE5622;
