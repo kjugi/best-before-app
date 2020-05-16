@@ -3,6 +3,9 @@
 ## Live:
 https://best-before-app-afb09.firebaseapp.com/
 
+## Important
+**Registration is available only by my invite. If you want one, create an issue or host your own firebase app by forking this repo. Also remember to use own API config**
+
 ## What's in this app
 - List of products on homepage
 - Adding new items
@@ -35,6 +38,7 @@ https://best-before-app-afb09.firebaseapp.com/
 - Release and public (use .env, disable registration, add .indexOn and .validate on firebase console - ref https://firebase.google.com/docs/database/security)
 - Edit mode for product list from homepage
 - User preferences/settings page like user dashboard after login + saving compact/standard view of items
+- Add custom remind time before best before date + custom date for notify
 - Add search option
 - Add sorting options
 - Code review for whole codebase (rewrite styles to reusable, splitting logic and components to separate files and reusing them)
