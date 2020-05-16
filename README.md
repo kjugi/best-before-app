@@ -3,6 +3,8 @@
 ## Live:
 https://best-before-app-afb09.firebaseapp.com/
 
+## Waiting when vue3 and snowpack2 will be released. Than will try to do it. Propably when vue3 will be released it will be better to try vue/vite
+
 ## What's in this app
 - List of products on homepage
 - Adding new items to store
