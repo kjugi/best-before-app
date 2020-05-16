@@ -25,6 +25,18 @@ export function saveToken(userId) {
     })
 }
 
+export function tokenRefresh() {
+  messaging.onTokenRefresh(() => {
+    messaging.getToken().then((refreshedToken) => {
+      console.log('Token refreshed.')
+      // Send Instance ID token to app server.
+      saveToken(refreshedToken)
+    }).catch((err) => {
+      console.log('Unable to retrieve refreshed token ', err)
+    })
+  })
+}
+
 // Requests permission to send notifications on this browser
 export function requestPermission(userId) {
   messaging.requestPermission()
