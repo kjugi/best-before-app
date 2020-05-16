@@ -36,12 +36,15 @@ export default {
   setup (props, context) {
     const isRequest = computed(() => context.root.$store.state.isRequestProcessed)
 
+    context.root.$store.commit('changeRequestProcess', true)
+
     auth.onAuthStateChanged(user => {
       context.root.$store.commit('setUser', user)
 
       if (user) {
         context.root.$router.push({ name: 'Home' })
       }
+      context.root.$store.commit('changeRequestProcess', false)
     })
 
     return {

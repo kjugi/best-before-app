@@ -95,6 +95,7 @@ export default {
       isMenuActive.value = false
 
       try {
+        context.root.$store.commit('changeRequestProcess', true)
         auth.signOut()
         context.root.$store.commit('setUser', null)
         context.root.$router.push({ name: 'Login' })
@@ -104,6 +105,8 @@ export default {
           messageClass: 'notify--error',
           message: `Problem with logout. ${error.message}`
         })
+      } finally {
+        context.root.$store.commit('changeRequestProcess', false)
       }
     }
 
