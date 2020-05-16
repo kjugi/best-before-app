@@ -45,14 +45,6 @@
         >
           Login
         </router-link>
-
-        <router-link
-          class="menu__link"
-          to="/register"
-          @click.native="isMenuActive = false"
-        >
-          Register
-        </router-link>
       </template>
 
       <button

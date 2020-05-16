@@ -25,17 +25,17 @@ const routes = [
       title: 'Login page'
     }
   },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import(
-      /* webpackChunkName: "register" */
-      '../views/Register.vue'
-    ),
-    meta: {
-      title: 'Register page'
-    }
-  },
+  // {
+  //   path: '/register',
+  //   name: 'Register',
+  //   component: () => import(
+  //     /* webpackChunkName: "register" */
+  //     '../views/Register.vue'
+  //   ),
+  //   meta: {
+  //     title: 'Register page'
+  //   }
+  // },
   {
     path: '/add-product',
     name: 'Add product',
