@@ -8,48 +8,13 @@
         </router-link>
       </h1>
 
-      <div>
-        <router-link
-          class="nav__link"
-          to="/"
-        >
-          Home
-        </router-link> |
-
-        <router-link
-          class="nav__link"
-          to="/add-product"
-        >
-          Add product
-        </router-link> |
-
-        <template v-if="!isLogged">
-          <router-link
-            class="nav__link"
-            to="/login"
-          >
-            Login
-          </router-link> |
-
-          <router-link
-            class="nav__link"
-            to="/register"
-          >
-            Register
-          </router-link> |
-        </template>
-
-        <button
-          v-else
-          @click="logout"
-        >
-          Logout
-        </button>
-      </div>
+      <main-menu />
     </div>
 
     <div class="app__container">
       <router-view />
+
+      <loader v-if="isRequest" />
     </div>
 
     <portal-target name="notify-portal" />
@@ -60,40 +25,49 @@
 import { computed } from '@vue/composition-api'
 import { auth } from './logic/Db.js'
 
+import MainMenu from '@/components/Menu.vue'
+import Loader from '@/components/Loader.vue'
+
 export default {
+  components: {
+    MainMenu,
+    Loader
+  },
   setup (props, context) {
+    const isRequest = computed(() => context.root.$store.state.isRequestProcessed)
+
+    context.root.$store.commit('changeRequestProcess', true)
+
     auth.onAuthStateChanged(user => {
       context.root.$store.commit('setUser', user)
 
       if (user) {
         context.root.$router.push({ name: 'Home' })
       }
+      context.root.$store.commit('changeRequestProcess', false)
     })
 
-    const isLogged = computed(() => !!context.root.$store.getters.isUserLogged)
-
-    function logout() {
-      try {
-        auth.signOut()
-        context.root.$store.commit('setUser', null)
-        context.root.$router.push({ name: 'Login' })
-      } catch {
-        // TODO: Error handling
-        console.log('problem')
-      }
-    }
-
     return {
-      isLogged,
-      logout
+      isRequest
     }
   }
 }
 </script>
 
 <style lang="scss">
+@import 'assets/mq';
+
 body {
   margin: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 12px;
+
+  @include mq(768px) {
+    margin: 12px 0;
+  }
 }
 
 .fade-enter-active {
@@ -124,6 +98,10 @@ button {
   }
 }
 
+a {
+  color: #2c3e50;
+}
+
 .app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -147,22 +125,6 @@ button {
     & a {
       color: #2c3e50;
       text-decoration: none;
-    }
-  }
-
-  &__link {
-    font-weight: bold;
-    color: #2c3e50;
-    text-decoration: none;
-
-    &.router-link-exact-active {
-      color: #42b983;
-      text-decoration: underline;
-    }
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
     }
   }
 }

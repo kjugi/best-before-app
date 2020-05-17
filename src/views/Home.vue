@@ -4,9 +4,14 @@
       List of products
     </h2>
 
+    <top-bar v-if="products.length > 0" />
+
     <ul
       v-if="products.length > 0"
-      class="home__list"
+      :class="[
+        'home__list',
+        { 'home__list--compact': !isStandardViewActive }
+      ]"
     >
       <li
         v-for="(item, index) in products"
@@ -20,22 +25,30 @@
         <div class="home__item-content">
           <p class="home__item-details">
             <span class="home__item-line">
-              No. {{ index }}.
+              <span class="home__item-label">
+                No. {{ index }}.
 
-              Product name:
+                Product name:
+              </span>
+
               <span class="home__item-detail">
                 {{ item.name }}
               </span>
             </span>
             <span class="home__item-line">
-              Category:
+              <span class="home__item-label">
+                Category:
+              </span>
+
               <span class="home__item-detail">
                 {{ item.category }}
               </span>
             </span>
 
             <span class="home__item-line">
-              Expire date:
+              <span class="home__item-label">
+                Expire date:
+              </span>
 
               <span class="home__item-detail">
                 {{ item.expireDate }}
@@ -90,7 +103,13 @@
       v-else
       class="home__no-results"
     >
-      No products in store
+      <strong class="home__no-results-title">
+        You don't have any products.
+      </strong>
+
+      <span>
+        Add one in <a href="/add-product">add product page</a>
+      </span>
     </p>
 
     <portal to="notify-portal">
@@ -110,12 +129,14 @@
 import { ref, computed } from '@vue/composition-api'
 
 import Notify from '../components/Notify.vue'
+import TopBar from '../components/TopBar.vue'
 import { initFunction } from '../logic/Notify.js'
 
 export default {
   name: 'Home',
   components: {
-    Notify
+    Notify,
+    TopBar
   },
   setup (props, context) {
     // Run fetching products from firebase
@@ -133,15 +154,18 @@ export default {
       return Math.ceil((new Date(dateToCompare) - new Date()) / (1000 * 60 * 60 * 24)) < 0 || false
     }
 
-    function deleteProduct (id) {
+    async function deleteProduct (id) {
+      context.root.$store.commit('changeRequestProcess', true)
       idToDelete.value = null
-      context.root.$store.dispatch('deleteProduct', id)
+
+      await context.root.$store.dispatch('deleteProduct', id)
 
       showMessage({
         status: true,
         messageClass: 'notify--success',
         message: 'Successfully deleted'
       })
+      context.root.$store.commit('changeRequestProcess', false)
     }
 
     // Notify init
@@ -153,6 +177,11 @@ export default {
       showMessage
     } = initFunction()
 
+    // Items view type
+    const isStandardViewActive = computed(() =>
+      context.root.$store.state.isStandardViewActive
+    )
+
     return {
       products: computed(() => context.root.$store.state.products),
       idToDelete,
@@ -163,7 +192,9 @@ export default {
       isMessageShowed,
       message,
       messageClasses,
-      toggleMessage
+      toggleMessage,
+      // Items view type
+      isStandardViewActive
     }
   }
 }
@@ -175,6 +206,37 @@ export default {
     padding: 0;
     margin: 0;
     list-style: none;
+
+    &--compact {
+      .home__item {
+        justify-content: center;
+      }
+
+      .home__item-content {
+        width: auto;
+      }
+
+      .home__item-details {
+        display: inline-block;
+        margin: 0;
+      }
+
+      .home__item-info {
+        display: inline-block;
+      }
+
+      .home__item-line {
+        display: initial;
+      }
+
+      .home__item-label {
+        display: none;
+      }
+
+      .home__item-detail:after {
+        content: '-';
+      }
+    }
   }
 
   &__item {
@@ -213,6 +275,11 @@ export default {
 
   &__no-results {
     text-align: center;
+  }
+
+  &__no-results-title {
+    display: block;
+    font-size: 18px;
   }
 }
 </style>

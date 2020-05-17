@@ -1,0 +1,29 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies with yarn
+          command: yarn
+      - run:
+          name: Run build
+          command: yarn build
+      - run:
+          name: Install firebase tools
+          command: yarn add firebase-tools
+      - run:
+          name: Deploy app
+          command: yarn firebase deploy --only hosting --token $FIREBASE_TOKEN --project best-before-app-afb09
+
+workflows:
+  firebase-app:
+    jobs:
+      - build:
+          context: BestBeforeApp
+          filters:
+            branches:
+              only:
+                - master

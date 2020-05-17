@@ -51,7 +51,7 @@ export default {
     InputField,
     Notify
   },
-  setup () {
+  setup (props, context) {
     const login = ref('')
     const password = ref('')
 
@@ -73,6 +73,7 @@ export default {
         })
 
       clearFields()
+      context.root.$store.commit('changeRequestProcess', false)
     }
 
     function clearFields () {
@@ -104,3 +105,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.login {
+  &__button {
+    padding: 8px 24px;
+  }
+}
+</style>

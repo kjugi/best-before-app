@@ -104,8 +104,10 @@ export default {
     const expireDate = ref('')
 
     // Adding product logic
-    function addProductTrigger () {
-      context.root.$store.dispatch('addProduct', {
+    async function addProductTrigger () {
+      context.root.$store.commit('changeRequestProcess', true)
+
+      await context.root.$store.dispatch('addProduct', {
         name: name.value,
         expireDate: expireDate.value,
         category: selectedCategory.value,
@@ -119,6 +121,7 @@ export default {
       })
 
       clearFields()
+      context.root.$store.commit('changeRequestProcess', false)
     }
 
     function clearFields () {

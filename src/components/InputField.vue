@@ -89,6 +89,7 @@ export default {
     padding: 8px 12px;
     background-color: #fff;
     border: 1px solid #2c3e50;
+    border-radius: unset;
   }
 
   &__select-wrapper {

@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
 import 'firebase/analytics'
+import 'firebase/messaging'
 
 const app = firebase.initializeApp({
   apiKey: 'AIzaSyA6ClIYD2m8sTIBP2ClityYPXdiw7mBCyg',
@@ -18,4 +19,5 @@ app.analytics()
 
 export const db = app.database()
 export const auth = app.auth()
+export const messaging = app.messaging()
 export const currentTime = firebase.database.ServerValue.TIMESTAMP
