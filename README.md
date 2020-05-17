@@ -6,6 +6,13 @@ https://best-before-app-afb09.firebaseapp.com/
 ## Important
 **Registration is available only by my invite. If you want one, create an issue or host your own firebase app by forking this repo. Also remember to use own API config**
 
+Push notifications available only for:
+https://caniuse.com/#feat=push-api
+
+**Info for iOS devices:**
+
+It's unavailable b/c safari doesn't support and as you may know all browsers on iOS basing on safari engine
+
 ## What's in this app
 - List of products on homepage
 - Adding new items
