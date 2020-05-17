@@ -6,7 +6,7 @@ export function saveToken(userId) {
   messaging.getToken()
     .then(currentToken => {
       if (currentToken) {
-        db.ref(`${userId}/notificationTokens/${currentToken}`).set(true)
+        db.ref(`tokens/${userId}/notificationTokens/${currentToken}`).set(true)
       } else {
         requestPermission()
       }
