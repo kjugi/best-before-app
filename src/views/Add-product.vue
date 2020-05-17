@@ -87,6 +87,7 @@ import useVuelidate from '@vuelidate/core'
 import InputField from '@/components/InputField.vue'
 import Notify from '@/components/Notify.vue'
 import { initFunction } from '@/logic/Notify.js'
+import { requestPermission } from '@/logic/Messages.js'
 
 export default {
   name: 'AddProductPage',
@@ -160,6 +161,9 @@ export default {
     // Category field logic
     const categories = computed(() => context.root.$store.state.categories)
     const selectedCategory = ref(categories.value[0])
+
+    // Run ask for permissions on start
+    requestPermission()
 
     return {
       name,

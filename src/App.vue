@@ -22,11 +22,13 @@
 </template>
 
 <script>
-import { computed } from '@vue/composition-api'
-import { auth } from '@/logic/Db.js'
+import { computed, onMounted } from '@vue/composition-api'
+import { auth, messaging } from '@/logic/Db.js'
 
 import MainMenu from '@/components/Menu.vue'
 import Loader from '@/components/Loader.vue'
+
+import { tokenRefresh, onMessage } from './logic/Messages.js'
 
 export default {
   components: {
@@ -45,6 +47,11 @@ export default {
         context.root.$router.push({ name: 'Home' })
       }
       context.root.$store.commit('changeRequestProcess', false)
+    })
+
+    onMounted(() => {
+      tokenRefresh()
+      messaging.onMessage(payload => onMessage(payload))
     })
 
     return {

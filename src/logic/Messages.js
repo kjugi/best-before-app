@@ -1,4 +1,5 @@
 import { db, messaging } from './Db.js'
+import store from '../store/index.js'
 
 // Saves the token to the database if available. If not request permissions
 export function saveToken(userId) {
@@ -21,15 +22,20 @@ export function saveToken(userId) {
         notifyMessage = 'You have blocked notifications on this browser. To enable notifications follow these instructions: <a href="https://support.google.com/chrome/answer/114662?visit_id=1-636150657126357237-2267048771&rd=1&co=GENIE.Platform%3DAndroid&oco=1">Android Chrome Instructions</a><a href="https://support.google.com/chrome/answer/6148059">Desktop Chrome Instructions</a>'
       }
 
-      return notifyMessage
+      console.log(notifyMessage)
     })
 }
 
 export function tokenRefresh() {
+  // TODO: Do some fallback for this usesr with info or something
+  if (!messaging || !store.state.user) {
+    return false
+  }
+
   messaging.onTokenRefresh(() => {
     messaging.getToken().then((refreshedToken) => {
       console.log('Token refreshed.')
-      // Send Instance ID token to app server.
+      // Send Instance ID token to app server
       saveToken(refreshedToken)
     }).catch((err) => {
       console.log('Unable to retrieve refreshed token ', err)
@@ -38,13 +44,29 @@ export function tokenRefresh() {
 }
 
 // Requests permission to send notifications on this browser
-export function requestPermission(userId) {
+export function requestPermission() {
+  // TODO: Do some fallback for this usesr with info or something
+  if (!messaging || !store.state.user) {
+    return false
+  }
+
   messaging.requestPermission()
     .then(() => {
       console.log('Notification permission granted.')
-      saveToken(userId)
+      saveToken(store.getters.getUserUid)
     })
     .catch(error => {
       console.error('Unable to get permission to notify.', error)
     })
+}
+
+export function onMessage(payload) {
+  console.log('Notifications received.', payload);
+
+  if (payload.notification) {
+    // If notifications are supported on this browser we display one.
+    if (window.Notification instanceof Function) {
+      new Notification(payload.notification.title, payload.notification);
+    }
+  }
 }

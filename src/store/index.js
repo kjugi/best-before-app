@@ -80,6 +80,9 @@ export default new Vuex.Store({
   getters: {
     isUserLogged (state) {
       return !!state.user
+    },
+    getUserUid (state) {
+      return state.user.uid
     }
   }
 })
