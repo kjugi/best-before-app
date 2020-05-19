@@ -51,7 +51,9 @@ export default {
 
     onMounted(() => {
       tokenRefresh()
+      if (messaging) {
       messaging.onMessage(payload => onMessage(payload))
+      }
     })
 
     return {
