@@ -2,7 +2,8 @@ const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 admin.initializeApp()
 
-exports.newSendNotifications = functions.pubsub.schedule('every day 00:00')
+exports.sendNotifications = functions.pubsub.schedule('every day 00:00')
+  .timeZone('Europe/Warsaw')
   .onRun(async () => {
     const userIds = await getUserIds()
     const usersLeft = await getUsersToNotify(userIds)
@@ -61,6 +62,7 @@ async function getUserIds (users = [], nextPageToken) {
 
 // Showing push by firebase functions
 async function sendNotification(uid) {
+  // TODO: Checking for flag is notifications disabled by user or we can send one
   // Get the list of device notification tokens.
   const getDeviceTokensPromise = await admin.database()
       .ref(`tokens/${uid}/notificationTokens`)
@@ -73,20 +75,18 @@ async function sendNotification(uid) {
   console.log('There are', getDeviceTokensPromise.numChildren(), 'tokens to send notifications to.')
 
   // Notification details.
-  // TODO: Add real body
   const payload = {
     notification: {
-      title: 'You added a product',
-      body: 'custom body'
+      title: 'Action required in your Best Before App',
+      body: 'We detected that some of your products is close to expire date. You should check it',
+      icon: '/icon.png'
     }
   }
 
   // Listing all tokens as an array.
   let tokens = Object.keys(getDeviceTokensPromise.val())
-
   // Send notifications to all tokens.
   const response = await admin.messaging().sendToDevice(tokens, payload)
-
   // For each message check if there was an error.
   const tokensToRemove = []
 
@@ -108,5 +108,4 @@ async function sendNotification(uid) {
   return Promise.all(tokensToRemove)
 }
 
-// TODO: Update function name + add proper timezone + rethink of adding flag for user that we send him a notify
 // TODO: Delete products with +1 month after best before date for users as a cron job
