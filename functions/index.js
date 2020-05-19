@@ -77,8 +77,8 @@ async function sendNotification(uid) {
   // Notification details.
   const payload = {
     notification: {
-      title: 'Action required in your Best Before App',
-      body: 'We detected that some of your products is close to expire date. You should check it',
+      title: 'Action required in Best Before App',
+      body: 'Some of your products is close to expire date. You should check it',
       icon: '/icon.png'
     }
   }

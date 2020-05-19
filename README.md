@@ -49,6 +49,7 @@ It's unavailable b/c safari doesn't support and as you may know all browsers on 
 - Add custom remind time before best before date + custom date for notify
 - Add search option
 - Add sorting options
+- Add flag/option for auto deleting products older than month after best before date
 - Code review for whole codebase (rewrite styles to reusable, splitting logic and components to separate files and reusing them)
 - Add QTY in main form
 - Add QTY in edit mode for single product from homepage
