@@ -17,26 +17,36 @@
       <loader v-if="isRequest" />
     </div>
 
+    <notify
+      v-show="isMessageShowed"
+      :message="messageToWatch"
+      @click.native="toggleMessage(10)"
+    />
+
     <portal-target name="notify-portal" />
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/composition-api'
+import { ref, computed, onMounted, watch } from '@vue/composition-api'
 import { auth, messaging } from '@/logic/Db.js'
 
 import MainMenu from '@/components/Menu.vue'
+import Notify from '@/components/Notify.vue'
 import Loader from '@/components/Loader.vue'
 
-import { tokenRefresh, onMessage } from './logic/Messages.js'
+import { tokenRefresh, onMessage, notifyMessage } from './logic/Messages.js'
 
 export default {
   components: {
     MainMenu,
+    Notify,
     Loader
   },
   setup (props, context) {
     const isRequest = computed(() => context.root.$store.state.isRequestProcessed)
+    const messageToWatch = computed(() => notifyMessage)
+    const isMessageShowed = ref(false)
 
     context.root.$store.commit('changeRequestProcess', true)
 
@@ -50,14 +60,31 @@ export default {
     })
 
     onMounted(() => {
+      // TODO: Init on safari browser after enter the page
       tokenRefresh()
       if (messaging) {
-      messaging.onMessage(payload => onMessage(payload))
+        messaging.onMessage(payload => onMessage(payload))
       }
     })
 
+    watch(messageToWatch, n => {
+      if (n.length > 0) {
+        isMessageShowed.value = true
+        toggleMessage()
+      }
+    })
+
+    function toggleMessage (data = 5000) {
+      setTimeout(() => {
+        isMessageShowed.value = false
+      }, data)
+    }
+
     return {
-      isRequest
+      isRequest,
+      messageToWatch,
+      isMessageShowed,
+      toggleMessage
     }
   }
 }
