@@ -43,6 +43,7 @@ It's unavailable b/c safari doesn't support and as you may know all browsers on 
 ## TODO:
 - Sending notifications about product close to expire, expired products and today expire products
 - Release and public (use .env, disable registration, add .indexOn and .validate on firebase console - ref https://firebase.google.com/docs/database/security)
+- Disable notify for X days in options
 - Edit mode for product list from homepage
 - User preferences/settings page like user dashboard after login + saving compact/standard view of items
 - Add custom remind time before best before date + custom date for notify
