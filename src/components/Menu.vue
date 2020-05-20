@@ -81,7 +81,7 @@ export default {
   },
   setup (props, context) {
     let isMenuActive = ref(false)
-    const isLogged = computed(() => !!context.root.$store.getters.isUserLogged)
+    const isLogged = computed(() => context.root.$store.getters.isUserLogged)
 
     function logout() {
       isMenuActive.value = false
