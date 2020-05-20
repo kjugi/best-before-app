@@ -90,6 +90,10 @@ export default {
     background-color: #fff;
     border: 1px solid #2c3e50;
     border-radius: unset;
+
+    &[type="checkbox"] {
+      width: auto;
+    }
   }
 
   &__select-wrapper {
