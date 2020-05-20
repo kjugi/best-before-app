@@ -10,6 +10,7 @@ export default new Vuex.Store({
     user: null,
     isStandardViewActive: true,
     products: [],
+    messagingErrorNotify: '',
     categories: [
       'Alcoholic drinks',
       'Baby products',
@@ -49,6 +50,9 @@ export default new Vuex.Store({
     },
     changeRequestProcess (state, value) {
       state.isRequestProcessed = value
+    },
+    updateMessagingErrorNotify (state, value) {
+      state.messagingErrorNotify = value
     }
   },
   actions: {
