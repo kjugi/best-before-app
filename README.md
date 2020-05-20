@@ -39,9 +39,9 @@ It's unavailable b/c safari doesn't support and as you may know all browsers on 
 - Fix mobile styles
 - Deploy firebase app with command `firebase deploy` in CI on master branch
 - Showing loader and blocking forms when doing action
+- Sending notifications about products close to expire
 
 ## TODO:
-- Sending notifications about product close to expire, expired products and today expire products
 - Release and public (use .env, disable registration, add .indexOn and .validate on firebase console - ref https://firebase.google.com/docs/database/security)
 - Disable notify for X days in options
 - Edit mode for product list from homepage
@@ -49,6 +49,7 @@ It's unavailable b/c safari doesn't support and as you may know all browsers on 
 - Add custom remind time before best before date + custom date for notify
 - Add search option
 - Add sorting options
+- Create Google Cloud cron function for auto deleting products 1 month after best before date
 - Add flag/option for auto deleting products older than month after best before date
 - Code review for whole codebase (rewrite styles to reusable, splitting logic and components to separate files and reusing them)
 - Add QTY in main form
