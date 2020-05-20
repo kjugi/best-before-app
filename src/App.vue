@@ -17,25 +17,28 @@
       <loader v-if="isRequest" />
     </div>
 
-    <notify
-      v-show="isMessageShowed"
-      :message="messageToWatch"
-      @click.native="toggleMessage(10)"
-    />
+    <transition name="fade">
+      <notify
+        v-show="isMessageShowed"
+        :message="messagingErrorNotify"
+        @click.native="toggleMessage(10)"
+      />
+    </transition>
 
     <portal-target name="notify-portal" />
   </div>
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from '@vue/composition-api'
+import { computed, watch } from '@vue/composition-api'
 import { auth, messaging } from '@/logic/Db.js'
 
 import MainMenu from '@/components/Menu.vue'
 import Notify from '@/components/Notify.vue'
 import Loader from '@/components/Loader.vue'
 
-import { tokenRefresh, onMessage, notifyMessage } from './logic/Messages.js'
+import { initFunction } from '@/logic/Notify.js'
+import { tokenRefresh, onMessage } from './logic/Messages.js'
 
 export default {
   components: {
@@ -45,8 +48,8 @@ export default {
   },
   setup (props, context) {
     const isRequest = computed(() => context.root.$store.state.isRequestProcessed)
-    const messageToWatch = computed(() => notifyMessage)
-    const isMessageShowed = ref(false)
+    const messagingErrorNotify = computed(() => context.root.$store.state.messagingErrorNotify)
+    const isLogged = computed(() => context.root.$store.getters.isUserLogged)
 
     context.root.$store.commit('changeRequestProcess', true)
 
@@ -59,31 +62,41 @@ export default {
       context.root.$store.commit('changeRequestProcess', false)
     })
 
-    onMounted(() => {
-      // TODO: Init on safari browser after enter the page
-      tokenRefresh()
-      if (messaging) {
-        messaging.onMessage(payload => onMessage(payload))
+    // Message logic
+    watch(isLogged, () => {
+      if (isLogged.value) {
+        tokenRefresh()
+
+        if (messaging) {
+          messaging.onMessage(payload => onMessage(payload))
+        }
       }
     })
 
-    watch(messageToWatch, n => {
-      if (n.length > 0) {
-        isMessageShowed.value = true
-        toggleMessage()
+    watch(messagingErrorNotify, () => {
+      if (messagingErrorNotify.value.length > 0) {
+        showMessage({
+          status: true,
+          message: messagingErrorNotify.value
+        })
       }
     })
 
-    function toggleMessage (data = 5000) {
-      setTimeout(() => {
-        isMessageShowed.value = false
-      }, data)
-    }
+    // Notify init
+    const {
+      isMessageShowed,
+      message,
+      messageClasses,
+      toggleMessage,
+      showMessage
+    } = initFunction()
 
     return {
       isRequest,
-      messageToWatch,
+      messagingErrorNotify,
       isMessageShowed,
+      message,
+      messageClasses,
       toggleMessage
     }
   }
