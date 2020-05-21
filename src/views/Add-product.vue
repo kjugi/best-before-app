@@ -60,7 +60,6 @@
         type="submit"
         class="product__button"
         :disabled="validation.$invalid"
-        @click="addProductTrigger"
       >
         Add product to database
       </button>
