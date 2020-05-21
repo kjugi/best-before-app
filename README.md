@@ -1,4 +1,5 @@
 # Best before app
+> version 0.1.0
 
 ## Live:
 https://best-before-app-afb09.firebaseapp.com/
@@ -46,6 +47,7 @@ It's unavailable b/c safari doesn't support and as you may know all browsers on 
 - Deploy firebase app with command `firebase deploy` in CI on master branch
 - Showing loader and blocking forms when doing action
 - Sending notifications about products close to expire
+- Release and public
 
 ## Running app locally
 TODO
@@ -54,7 +56,7 @@ TODO
 TODO
 
 ## TODO:
-- Release and public (use .env, disable registration, add .indexOn and .validate on firebase console - ref https://firebase.google.com/docs/database/security)
+- Check firebase function and write rules in firebase.console - ref https://firebase.google.com/docs/reference/security/database/#write
 - Disable notify for X days in options
 - Edit mode for product list from homepage
 - User preferences/settings page like user dashboard after login + saving compact/standard view of items
