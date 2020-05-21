@@ -3,6 +3,12 @@
 ## Live:
 https://best-before-app-afb09.firebaseapp.com/
 
+## Requirements
+TODO
+
+## About app
+TODO
+
 ## Important
 **Registration is available only by my invite. If you want one, create an issue or host your own firebase app by forking this repo. Also remember to use own API config**
 
@@ -40,6 +46,12 @@ It's unavailable b/c safari doesn't support and as you may know all browsers on 
 - Deploy firebase app with command `firebase deploy` in CI on master branch
 - Showing loader and blocking forms when doing action
 - Sending notifications about products close to expire
+
+## Running app locally
+TODO
+
+## Host app instructions:
+TODO
 
 ## TODO:
 - Release and public (use .env, disable registration, add .indexOn and .validate on firebase console - ref https://firebase.google.com/docs/database/security)
