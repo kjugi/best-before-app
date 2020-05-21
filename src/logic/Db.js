@@ -5,8 +5,11 @@ import 'firebase/analytics'
 import 'firebase/messaging'
 import 'firebase/functions'
 
+// Use your own config if want to host site
 export const app = firebase.initializeApp({
-  apiKey: 'AIzaSyA6ClIYD2m8sTIBP2ClityYPXdiw7mBCyg',
+  apiKey: process.env.NODE_ENV === 'development'
+    ? process.env.VUE_APP_API_KEY
+    : 'AIzaSyA6ClIYD2m8sTIBP2ClityYPXdiw7mBCyg',
   authDomain: 'best-before-app-afb09.firebaseapp.com',
   databaseURL: 'https://best-before-app-afb09.firebaseio.com',
   projectId: 'best-before-app-afb09',
