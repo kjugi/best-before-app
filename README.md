@@ -128,3 +128,6 @@ Than you can run function by calling their name in console like this
 - Exporting item to other shop/todo app
 - NEW page for toiler paper status
 - Predefined expiry data for some items i.e. frozen category
+
+## License
+Apache License 2.0
