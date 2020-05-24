@@ -4,11 +4,17 @@
 ## Live:
 https://best-before-app-afb09.firebaseapp.com/
 
-## Requirements
-TODO
-
 ## About app
-TODO
+During lockdown we can create pretty much big food suplies - to feel safe and not leaving home for a longer time. Each product contains own 'best before' date and we can't remember all of them that's for sure. With this app you can simply add an product to your list and when date will be close to expire it will remind you by push notify + change status in app.
+
+You are also allowed to categorize products and delete them from list when used. In future should be available a lot more options. They are listed below in TODO section.
+
+Currently I'm using following list of features from firebase:
+- Realtime database
+- Authentication
+- Hosting
+- Functions
+- Cloud scheduler
 
 ## Important
 **Registration is available only by my invite. If you want one, create an issue or host your own firebase app by forking this repo. Also remember to use own API config**
@@ -49,11 +55,60 @@ It's unavailable b/c safari doesn't support and as you may know all browsers on 
 - Sending notifications about products close to expire
 - Release and public
 
-## Running app locally
-TODO
+## Start app locally
+> DISCLAIMER: Hosting and running app locally requires using firebase and google cloud features. Remember that some of features like using functions and cloud scheduling needs paid as you go billing plan called "Blaze". You should feel warned and aware about it now so don't blame ayone else with that.
 
-## Host app instructions:
-TODO
+1. Requirements to run locally
+```
+$ node -v
+v12.6
+
+$ vue -V
+@vue/cli 4.3
+
+$ firebase -V
+7.16
+```
+
+2. Create project in firebase console for web. If have problems check this instruction: https://firebase.google.com/docs/web/setup. Remember to replace `src/logic/Db.js` config to your own.
+
+3. Create `.env.local` in root directory with following content:
+```
+VUE_APP_API_KEY=YOUR_API_KEY
+```
+
+4. Run following command:
+```cli
+yarn && yarn serve
+```
+
+If everything was created, configured and installed fine you should be able to run app locally on `localhost:8080`. With my credentials to initializing firebase app from repository you are not able to pass this process.
+
+## Deploying app instructions
+**Going with this app full public and let everyone to register may generate costs in firebase and you should remember to create some privacy policy for it.**
+
+When you are all setted up on local enviroment, you can use firebase features to public start an app. To do that learn how to deploy to firebase here: https://firebase.google.com/docs/hosting
+
+> Remember that before deploy firebase app to hosting you should build your files in root by `yarn build`, than use `yarn firebase deploy --only hosting`
+
+To deploy functions you should trigger following command - I assume that you are logged and configured.
+
+```
+cd functions/ && yarn deploy
+```
+
+## Debugging firebase functions
+```
+cd functions/ && yarn && yarn start
+```
+
+Than you can run function by calling their name in console like this
+
+```
+>firebase sendNotifications()
+```
+
+> Sometimes to proper run functions it's required to command few lines of code and prepare fast data mock in this place.
 
 ## TODO:
 - Check firebase function and write rules in firebase.console - ref https://firebase.google.com/docs/reference/security/database/#write
